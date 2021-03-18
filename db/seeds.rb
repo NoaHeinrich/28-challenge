@@ -6,22 +6,24 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Patient.delete_all
-
+Product.delete_all
 State.delete_all
+Category.delete_all
+
 for state in STATES do
     State.create(:name => state[0], :abbreviation => state[1], :services => state[2], :min_age => state[3])
 end
 
-Product.delete_all
-for prod in PRODUCTS do 
-    cat = Category.find_by name: prod[:category]
-    Product.create(:name => prod[:name], :ndc => prod[:ndc], :qty => prod[:qty], :price => prod[:price], :instructions => prod[:instructions], :category => cat)
-end
-
-Category.delete_all
 for cat in CATEGORIES do
     Category.create(:name => cat)
 end
+
+for prod in PRODUCTS do 
+    cat = Category.find_by name: prod[:category]
+    Product.create(:name => prod[:name], :ndc => prod[:ndc], :qty => prod[:qty], :price => prod[:price], :instructions => prod[:instructions], :category_id => cat.id)
+end
+
+
 
 
 print('seeding complete')
