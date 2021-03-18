@@ -1,0 +1,10 @@
+<%= link_to "Go back", new_patient_path %>
+<%# This is a very simplified show page, designed to show that the submission was a success. %>
+<div class="container p-3 my-3 border"> 
+    <h3><%= @patient.full_name %></h3>
+    <p>From <%=  @patient.state.name %></p>
+    <p>Medication: <%= @patient.product.name %>
+    <% if @patient.doctor %>
+        <p>Doctor: <%= @patient.doctor %> </p>
+    <% end %>
+</div>
